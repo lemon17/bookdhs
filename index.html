@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ระบบออกเลขหนังสือสารบัญอิเล็กทรอนิกส์</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: #fdf6f0;
+      margin: 0;
+      padding: 20px;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fffafc;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border: 1px solid #f3d7eb;
+    }
+    h2 {
+      text-align: center;
+      color: #a66aa5;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background: #f4a7b9;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #ea92a6;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>ระบบออกเลขหนังสือสารบัญอิเล็กทรอนิกส์ กลุ่มงานสุขภาพดิจิทัล</h2>
+    <form id="bookForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeaw2PyFWPqknLXrU4tJp7ZPjhS_pY0yUya-VNQGDu0RkYHhw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+      
+      <!-- 1. เลขทะเบียนส่ง -->
+      <label for="reg">เลขทะเบียนส่ง</label>
+      <input type="text" id="reg" name="entry.1190343928" value="0033.301.14/1" required readonly />
+
+      <!-- 2. ลงวันที่ -->
+      <label for="date">ลงวันที่</label>
+      <input type="date" id="date" name="entry.624553175" required />
+
+      <!-- 3. เรียน -->
+      <label for="to">เรียน</label>
+      <input type="text" id="to" name="entry.59825210" required />
+
+      <!-- 4. เรื่อง -->
+      <label for="subject">เรื่อง</label>
+      <input type="text" id="subject" name="entry.2077379341" required />
+
+      <!-- 5. ประเภท -->
+      <label for="type">ประเภท</label>
+      <select id="type" name="entry.194475148" required>
+        <option value="">-- เลือกประเภท --</option>
+        <option value="เวียน">เวียน</option>
+        <option value="ไม่เวียน">ไม่เวียน</option>
+      </select>
+
+      <!-- 6. หมายเหตุ -->
+      <label for="note">หมายเหตุ</label>
+      <input type="text" id="note" name="entry.1287743497" />
+
+      <button type="submit">ส่งข้อมูล</button>
+    </form>
+
+    <!-- hidden iframe to bypass Google confirmation -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {document.getElementById('bookForm').reset(); alert('ส่งข้อมูลเรียบร้อยแล้ว');}"></iframe>
+  </div>
+
+  <script>
+    let submitted = false;
+    document.getElementById("date").valueAsDate = new Date();
+  </script>
+</body>
+</html>
