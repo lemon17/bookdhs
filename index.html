@@ -59,7 +59,7 @@
       
       <!-- 1. เลขทะเบียนส่ง -->
       <label for="reg">เลขทะเบียนส่ง</label>
-      <input type="text" id="reg" name="entry.1190343928" value="0033.301.14/1" required readonly />
+      <input type="text" id="bookid" name="entry.1190343928" value="0033.301.14/1" required readonly />
 
       <!-- 2. ลงวันที่ -->
       <label for="date">ลงวันที่</label>
@@ -91,10 +91,20 @@
     <!-- hidden iframe to bypass Google confirmation -->
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {document.getElementById('bookForm').reset(); alert('ส่งข้อมูลเรียบร้อยแล้ว');}"></iframe>
   </div>
+  
+    <script>
+    var submitted = false;
+    var baseId = "0033.301.14/";
+    var localStorageKey = "bookIdCounter";
 
-  <script>
-    let submitted = false;
-    document.getElementById("date").valueAsDate = new Date();
+    function generateBookId() {
+      let count = parseInt(localStorage.getItem(localStorageKey) || "1", 10);
+      document.getElementById("bookid").value = baseId + count;
+      localStorage.setItem(localStorageKey, count + 1);
+    }
+
+    window.onload = generateBookId;
   </script>
+ 
 </body>
 </html>
